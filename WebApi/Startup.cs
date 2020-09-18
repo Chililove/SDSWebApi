@@ -51,7 +51,6 @@ namespace WebApi
                 /* repo.Create(new Avatar { Name = "Chili", Type = "Magician", Color = "Pink" });
                  repo.Create(new Avatar { Name = "Bunsy", Type = "Healer", Color = "Black" });*/
 
-
                 IAvatarRepository aRepo = new AvatarRepo();
 
                 DBInit db = new DBInit(aRepo);
