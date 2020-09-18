@@ -14,6 +14,7 @@ using SDS.Core.Application_Service;
 using SDS.Core.Application_Service.Service;
 using SDS.Core.Domain_Service;
 using SDS.Core.Entity;
+using SDS.Infrastructure.Data;
 using SDS.Infrastructure.Data.Repositories;
 
 namespace WebApi
@@ -47,21 +48,28 @@ namespace WebApi
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var repo = scope.ServiceProvider.GetRequiredService<IAvatarRepository>();
-                repo.Create(new Avatar { Name = "Chili", Type = "Magician", Color = "Pink" });
-                repo.Create(new Avatar { Name = "Bunsy", Type = "Healer", Color = "Black" });
+                /* repo.Create(new Avatar { Name = "Chili", Type = "Magician", Color = "Pink" });
+                 repo.Create(new Avatar { Name = "Bunsy", Type = "Healer", Color = "Black" });*/
 
+
+                IAvatarRepository aRepo = new AvatarRepo();
+
+                DBInit db = new DBInit(aRepo);
+                db.InitData(); // Mock data
+                IAvatarService aService = new AvatarService(aRepo);
+
+
+                app.UseHttpsRedirection();
+
+                app.UseRouting();
+
+                app.UseAuthorization();
+
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
             }
-
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
         }
     }
 }
