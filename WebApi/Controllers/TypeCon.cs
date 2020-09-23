@@ -3,45 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SDS.Core.Application_Service;
+using SDS.Core.Entity;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace WebApi
+namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class TypeCon : ControllerBase
     {
+        private readonly ITypeService _typeService;
+
+        public TypeCon(ITypeService typeService) 
+        {
+            _typeService = typeService;
+        }
         // GET: api/<TypeCon>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<AvatarType> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _typeService.GetTypes();
         }
 
         // GET api/<TypeCon>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public AvatarType GetAvatarType(int id)
         {
-            return "value";
+            return _typeService.ReadTypeById(id);
         }
 
         // POST api/<TypeCon>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] AvatarType aType)
         {
+            _typeService.CreateType(aType);
         }
 
         // PUT api/<TypeCon>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] AvatarType aType)
         {
+            _typeService.UpdateType(aType);
         }
 
         // DELETE api/<TypeCon>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _typeService.DeleteType(id);
         }
     }
 }

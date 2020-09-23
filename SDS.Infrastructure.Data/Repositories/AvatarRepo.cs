@@ -47,7 +47,7 @@ namespace SDS.Infrastructure.Data.Repositories
             if (avatarFromDB != null)
             {
                 avatarFromDB.Name = avatarUpdate.Name;
-                avatarFromDB.Type = avatarUpdate.Type;
+                avatarFromDB.AvatarType = avatarUpdate.AvatarType;
                 avatarFromDB.Birthday = avatarUpdate.Birthday;
                 avatarFromDB.SoldDate = avatarUpdate.SoldDate;
                 avatarFromDB.Color = avatarUpdate.Color;

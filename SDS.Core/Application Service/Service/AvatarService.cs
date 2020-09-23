@@ -18,12 +18,12 @@ namespace SDS.Core.Application_Service.Service
             _aRepo = aRepo;
         }
 
-        public Avatar AvatarCreate(string type, string name, DateTime birthday, DateTime soldDate, string color, string Owner, double price) 
+        public Avatar AvatarCreate(string AvatarType, string name, DateTime birthday, DateTime soldDate, string color, string Owner, double price) 
         {
             var avatar = new Avatar()
             {
                 Name = name,
-                Type = type,
+                AvatarType = AvatarType,
                 Birthday = birthday,
                 SoldDate = soldDate,
                 Color = color,
@@ -102,7 +102,7 @@ namespace SDS.Core.Application_Service.Service
             if (DBAvatar != null)
             {
                 DBAvatar.Name = avatarUpdate.Name;
-                DBAvatar.Type = avatarUpdate.Type;
+                DBAvatar.AvatarType = avatarUpdate.AvatarType;
                 DBAvatar.Birthday = avatarUpdate.Birthday;
                 DBAvatar.SoldDate = avatarUpdate.SoldDate;
                 DBAvatar.Owner = avatarUpdate.Owner;

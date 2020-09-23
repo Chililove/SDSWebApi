@@ -88,7 +88,7 @@ namespace SDS.UI
         private void PrintAvatars(List<Avatar> avatars) {
             foreach (var avatar in avatars)
             {
-                Console.WriteLine($"Id: {avatar.Id}\n Name: {avatar.Name}\n Type: {avatar.Type}\n Birthdate: {avatar.Birthday}\n Sold date: {avatar.SoldDate}\n Color: {avatar.Color}\n Owner: {avatar.Owner}\n Price: {avatar.Price.ToString("C", CultureInfo.CurrentCulture)}");
+                Console.WriteLine($"Id: {avatar.Id}\n Name: {avatar.Name}\n AvatarType: {avatar.AvatarType}\n Birthdate: {avatar.Birthday}\n Sold date: {avatar.SoldDate}\n Color: {avatar.Color}\n Owner: {avatar.Owner}\n Price: {avatar.Price.ToString("C", CultureInfo.CurrentCulture)}");
             }
         }
 
@@ -116,8 +116,8 @@ namespace SDS.UI
         {
             Console.WriteLine("Name: ");
             var name = Console.ReadLine();
-            Console.WriteLine("Type: ");
-            var type = Console.ReadLine();
+            Console.WriteLine("AvatarType: ");
+            var AvatarType = Console.ReadLine();
             Console.WriteLine("Birthdate: ");
             DateTime newBirthday;
             while (!DateTime.TryParse(Console.ReadLine(), out newBirthday))
@@ -147,7 +147,7 @@ namespace SDS.UI
             {
 
                 Name = name,
-                Type = type,
+                AvatarType = AvatarType,
                 Birthday = newBirthday,
                 SoldDate = newSoldDate,
                 Color = color,
@@ -178,8 +178,8 @@ namespace SDS.UI
             
             Console.WriteLine("Name: ");
             avatar.Name = Console.ReadLine();
-            Console.WriteLine("Type: ");
-            avatar.Type = Console.ReadLine();
+            Console.WriteLine("AvatarType: ");
+            avatar.AvatarType = Console.ReadLine();
             Console.WriteLine("Birthdate: ");
             DateTime newBirthday;
             while (!DateTime.TryParse(Console.ReadLine(), out newBirthday))

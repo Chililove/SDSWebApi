@@ -11,10 +11,12 @@ namespace SDS.Infrastructure.Data
     {
         private readonly IAvatarRepository _avatarRepository;
         private readonly IOwnerRepository _ownerRepository;
-        public DBInit(IAvatarRepository avatarRepository, IOwnerRepository ownerRepository)
+        private readonly ITypeRepository _typeRepository;
+        public DBInit(IAvatarRepository avatarRepository, IOwnerRepository ownerRepository, ITypeRepository typeRepository)
         {
             _avatarRepository = avatarRepository;
             _ownerRepository = ownerRepository;
+            _typeRepository = typeRepository;
         }
         public void InitData()
         {
@@ -25,52 +27,73 @@ namespace SDS.Infrastructure.Data
             _avatarRepository.Create(new Avatar
             {
                       Name = "Bradley",
-                      Type = "Meliodas",
+                      AvatarType = "Wrath",
                       Birthday = DateTime.Now.Date,
                       SoldDate = DateTime.Now.Date,
-                      Color = "blue",
-                      Owner = "Bradley",
-                      Price = 250
+                      Color = "black",
+                      Owner = "Chili",
+                      Price = 900
         });
             _avatarRepository.Create(new Avatar
         {
                      Name = "Chili",
-                     Type = "Wrath",
+                     AvatarType = "Goddess",
                      Birthday = DateTime.Now.AddYears(-1*r.Next(1,100)),
                      SoldDate = DateTime.Now.Date.AddYears(-5),
-                     Color = "purple",
-                     Owner = "Lotte",
-                     Price = 400
+                     Color = "Pink",
+                     Owner = "Bradley",
+                     Price = 800
                  });
+
             _avatarRepository.Create(new Avatar
             {
                 Name = "Bunsy",
-                Type = "Sloth",
+                AvatarType = "Sloth",
                 Birthday = DateTime.Now.AddYears(-1 * r.Next(1, 100)),
                 SoldDate = DateTime.Now.Date.AddYears(-5),
-                Color = "purple",
-                Owner = "Peter",
-                Price = 400
-            }); _avatarRepository.Create(new Avatar
-            {
-                Name = "Melon",
-                Type = "Greed",
-                Birthday = DateTime.Now.AddYears(-1 * r.Next(1, 100)),
-                SoldDate = DateTime.Now.Date.AddYears(-5),
-                Color = "purple",
-                Owner = "Bradley",
-                Price = 400
-            }); _avatarRepository.Create(new Avatar
+                Color = "Blue",
+                Owner = "Chili",
+                Price = 600
+            });
+            _avatarRepository.Create(new Avatar
             {
                 Name = "Meliodas",
-                Type = "Wrath",
+                AvatarType = "Wrath",
                 Birthday = DateTime.Now.AddYears(-1 * r.Next(1, 100)),
                 SoldDate = DateTime.Now.Date.AddYears(-5),
-                Color = "purple",
-                Owner = "Bradley",
+                Color = "Dark Purple",
+                Owner = "Chili",
                 Price = 400
             });
-
+            _avatarRepository.Create(new Avatar
+            {
+                Name = "Melon",
+                AvatarType = "Greed",
+                Birthday = DateTime.Now.AddYears(-1 * r.Next(1, 100)),
+                SoldDate = DateTime.Now.Date.AddYears(-5),
+                Color = "Sand",
+                Owner = "Bradley",
+                Price = 400
+            }); _avatarRepository.Create(new Avatar
+            {
+                Name = "Ban",
+                AvatarType = "Greed",
+                Birthday = DateTime.Now.AddYears(-1 * r.Next(1, 100)),
+                SoldDate = DateTime.Now.Date.AddYears(-5),
+                Color = "Red",
+                Owner = "Lotte",
+                Price = 400
+            });
+            _avatarRepository.Create(new Avatar
+            {
+                Name = "Diane",
+                AvatarType = "Envy",
+                Birthday = DateTime.Now.AddYears(-1 * r.Next(1, 100)),
+                SoldDate = DateTime.Now.Date.AddYears(-5),
+                Color = "Orange",
+                Owner = "Peter",
+                Price = 400
+            });
             _ownerRepository.CreateOwner(new Owner
             {
                 FirstName = "Peter",
@@ -100,10 +123,48 @@ namespace SDS.Infrastructure.Data
                    Email = "LostBoy@sao.com"
 
                });
+            _ownerRepository.CreateOwner(new Owner
+            {
+                FirstName = "Chili",
+                LastName = "Love",
+                Address = "LaLaLand",
+                PhoneNumber = "15865525",
+                Email = "FoundBoy@sins.com"
+
+            });
+
+            _typeRepository.CreateType(new AvatarType
+            {
+                TypeOfAvatar = "Wrath"
+
+
+            });
+            _typeRepository.CreateType(new AvatarType
+            {
+                TypeOfAvatar = "Greed"
+
+
+            }); _typeRepository.CreateType(new AvatarType
+            {
+                TypeOfAvatar = "Envy"
+
+
+            }); _typeRepository.CreateType(new AvatarType
+            {
+                TypeOfAvatar = "Sloth"
+
+
+            });
+            _typeRepository.CreateType(new AvatarType
+            {
+                TypeOfAvatar = "Goddess"
+
+            });
 
 
 
-           // GiantMock.AddToRepo(_avatarRepository);
+
+            // GiantMock.AddToRepo(_avatarRepository);
             foreach (Avatar avatar in _avatarRepository.GetAllAvatars()) {
                 int bdInt = r.Next(1, 100);
                 avatar.Birthday = DateTime.Now.AddYears(-1 * bdInt);

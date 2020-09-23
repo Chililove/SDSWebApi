@@ -9,7 +9,7 @@ namespace SDS.Core.Application_Service
 
         public List<Avatar> GetAvatars();
 
-        Avatar AvatarCreate(string type, string name, DateTime birthday, DateTime soldDate, string color, string Owner, double price);
+        Avatar AvatarCreate(string AvatarType, string name, DateTime birthday, DateTime soldDate, string color, string Owner, double price);
 
         Avatar Create(Avatar avatar);
 

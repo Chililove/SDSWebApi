@@ -6,10 +6,10 @@ namespace SDS.Core.Entity
 {
     public class AvatarType
     {
-        public int id { get; set; }
-        public string nameType { get; set; }
+        public int Id { get; set; }
+        public string TypeOfAvatar { get; set; }
 
-        public List<Avatar> avatarTypeList { get; set; }
+      // public List<Avatar> avatarTypeList { get; set; }
 
     }
 }

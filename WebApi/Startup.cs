@@ -35,6 +35,8 @@ namespace WebApi
             services.AddScoped<IAvatarService, AvatarService>();
             services.AddScoped<IOwnerRepository, OwnerRepo>();
             services.AddScoped<IOwnerService, OwnerService>();
+            services.AddScoped<ITypeRepository, TypeRepo>();
+            services.AddScoped<ITypeService, TypeService>();
 
             services.AddControllers();
         }
@@ -51,17 +53,20 @@ namespace WebApi
             {
                 var repo = scope.ServiceProvider.GetRequiredService<IAvatarRepository>();
                 var orepo = scope.ServiceProvider.GetRequiredService<IOwnerRepository>();
+                ITypeRepository trepo = scope.ServiceProvider.GetRequiredService<ITypeRepository>();
 
-                /* repo.Create(new Avatar { Name = "Chili", Type = "Magician", Color = "Pink" });
-                 repo.Create(new Avatar { Name = "Bunsy", Type = "Healer", Color = "Black" });*/
+                /* repo.Create(new Avatar { Name = "Chili", AvatarType = "Magician", Color = "Pink" });
+                 repo.Create(new Avatar { Name = "Bunsy", AvatarType = "Healer", Color = "Black" });*/
 
                 IAvatarRepository aRepo = new AvatarRepo();
                 IOwnerRepository owRepo = new OwnerRepo();
+                ITypeRepository tyrepo = new TypeRepo();
 
-                DBInit db = new DBInit(aRepo, owRepo);
+                DBInit db = new DBInit(aRepo, owRepo, tyrepo);
                 db.InitData(); // Mock data
                 IAvatarService aService = new AvatarService(aRepo);
                 IOwnerService owService = new OwnerService(owRepo);
+                ITypeService tService = new TypeService(tyrepo);
 
                 app.UseHttpsRedirection();
 
