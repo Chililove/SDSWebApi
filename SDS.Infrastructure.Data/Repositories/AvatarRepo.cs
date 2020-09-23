@@ -10,6 +10,8 @@ namespace SDS.Infrastructure.Data.Repositories
     {
         private static List<Avatar> _avatarList = new List<Avatar>();
         static int id = 1;
+
+
         public Avatar Create(Avatar avatar)
         {
             avatar.Id = id++;

@@ -9,11 +9,11 @@ namespace SDS.Infrastructure.Data
         {
             _avatarRepository.Create(new Avatar { Name = "Roselle", Type = "Canis mesomelas", Color = "Green", Owner = "Roselle Markie", Price = 15624361 });
             _avatarRepository.Create(new Avatar { Name = "Cherilyn", Type = "Colobus guerza", Color = "Indigo", Owner = "Cherilyn Bush", Price = 29651224 });
-            _avatarRepository.Create(new Avatar { Name = "Dael", Type = "Alopex lagopus", Color = "Pink", Owner = "Dael Drakeford", Price = 1647203 });
+            _avatarRepository.Create(new Avatar { Name = "Dael", Type = "Longhaired Dog", Color = "Pink", Owner = "Dael Drakeford", Price = 1647203 });
             _avatarRepository.Create(new Avatar { Name = "Findley", Type = "Semnopithecus entellus", Color = "Purple", Owner = "Findley Wybern", Price = 18203919 });
             _avatarRepository.Create(new Avatar { Name = "Christiana", Type = "Centrocercus urophasianus", Color = "Yellow", Owner = "Christiana Brushfield", Price = 8974364 });
             _avatarRepository.Create(new Avatar { Name = "John", Type = "Lama guanicoe", Color = "Khaki", Owner = "John McKenzie", Price = 2066425 });
-            _avatarRepository.Create(new Avatar { Name = "Lemuel", Type = "Gyps fulvus", Color = "Teal", Owner = "Lemuel Thorneley", Price = 21697663 });
+            _avatarRepository.Create(new Avatar { Name = "Lemuel", Type = "Longhaired Dog", Color = "Teal", Owner = "Lemuel Thorneley", Price = 21697663 });
             _avatarRepository.Create(new Avatar { Name = "Ganny", Type = "Damaliscus lunatus", Color = "Turquoise", Owner = "Ganny Ratcliffe", Price = 10962237 });
             _avatarRepository.Create(new Avatar { Name = "Josephina", Type = "Lemur fulvus", Color = "Violet", Owner = "Josephina Keane", Price = 6169161 });
             _avatarRepository.Create(new Avatar { Name = "Martyn", Type = "Salvadora hexalepis", Color = "Maroon", Owner = "Martyn McKew", Price = 26970907 });
@@ -36,7 +36,7 @@ namespace SDS.Infrastructure.Data
             _avatarRepository.Create(new Avatar { Name = "Minni", Type = "Columba palumbus", Color = "Mauv", Owner = "Minni Wychard", Price = 25773287 });
             _avatarRepository.Create(new Avatar { Name = "Nicolina", Type = "Graspus graspus", Color = "Crimson", Owner = "Nicolina Opdenorth", Price = 9260619 });
             _avatarRepository.Create(new Avatar { Name = "Christian", Type = "Spermophilus armatus", Color = "Yellow", Owner = "Christian Papworth", Price = 9233033 });
-            _avatarRepository.Create(new Avatar { Name = "Hermann", Type = "Amblyrhynchus cristatus", Color = "Violet", Owner = "Hermann Mithan", Price = 18706230 });
+          /*  _avatarRepository.Create(new Avatar { Name = "Hermann", Type = "Amblyrhynchus cristatus", Color = "Violet", Owner = "Hermann Mithan", Price = 18706230 });
             _avatarRepository.Create(new Avatar { Name = "Randie", Type = "Acrobates pygmaeus", Color = "Fuscia", Owner = "Randie Boadby", Price = 523014 });
             _avatarRepository.Create(new Avatar { Name = "Gelya", Type = "Phoca vitulina", Color = "Yellow", Owner = "Gelya Gott", Price = 25597189 });
             _avatarRepository.Create(new Avatar { Name = "Corty", Type = "Alouatta seniculus", Color = "Orange", Owner = "Corty Domnin", Price = 17275203 });
@@ -1007,6 +1007,7 @@ namespace SDS.Infrastructure.Data
             _avatarRepository.Create(new Avatar { Name = "Leese", Type = "Pelecanus conspicillatus", Color = "Teal", Owner = "Leese Ovize", Price = 7192726 });
             _avatarRepository.Create(new Avatar { Name = "Frans", Type = "Felis pardalis", Color = "Goldenrod", Owner = "Frans Bissill", Price = 25178908 });
             _avatarRepository.Create(new Avatar { Name = "Dotty", Type = "Paradoxurus hermaphroditus", Color = "Turquoise", Owner = "Dotty Shayler", Price = 19817204 });
-        }
+        */
+            }
     }
 }

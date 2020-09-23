@@ -58,6 +58,7 @@ namespace SDS.Core.Application_Service.Service
 
         public List<Avatar> GetAvatars()
         {
+            
             return _aRepo.GetAllAvatars();
         }
         public List<Avatar> GetAvatarsSortByPrice()
