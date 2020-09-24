@@ -10,6 +10,10 @@ namespace SDS.Infrastructure.Data.Repositories
         private static List<AvatarType> _typeList = new List<AvatarType>();
         static int id = 1;
 
+        public TypeRepo()
+        {
+
+        }
         public AvatarType CreateType(AvatarType AvatarType)
         {
             AvatarType.Id = id++;

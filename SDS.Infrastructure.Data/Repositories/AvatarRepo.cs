@@ -10,30 +10,28 @@ namespace SDS.Infrastructure.Data.Repositories
     {
         private static List<Avatar> _avatarList = new List<Avatar>();
         static int id = 1;
-
-
+        
+        
         public Avatar Create(Avatar avatar)
         {
-            avatar.Id = id++;
-            _avatarList.Add(avatar);
+            avatar.Id = DBInit.GetNextId();
+            var list = DBInit.GetAllAvatars();
+            list.Add(avatar);
             return avatar;
         }
 
         public Avatar GetAvatarById(int Id)
         {
-            foreach (var avatar in _avatarList)
-            {
-                if (avatar.Id == id)
-                {
-                    return avatar;
-                }
-            }
-            return null;
+            var avatarList = DBInit.GetAllAvatars();
+            var avatar = avatarList.Find(x => x.Id == Id);
+            return avatar;
         }
 
         public List<Avatar> GetAllAvatars()
         {
-            return _avatarList;               
+
+            var avatarList = DBInit.GetAllAvatars();
+            return avatarList;               
         }
 
         public IEnumerable<Avatar> ReadAllAvatars() 
@@ -43,28 +41,28 @@ namespace SDS.Infrastructure.Data.Repositories
 
         public Avatar Update(Avatar avatarUpdate)
         {
-            var avatarFromDB = this.GetAvatarById(avatarUpdate.Id);
-            if (avatarFromDB != null)
+          var avatar =  GetAvatarById(avatarUpdate.Id);
+            if (avatar != null)
             {
-                avatarFromDB.Name = avatarUpdate.Name;
-                avatarFromDB.AvatarType = avatarUpdate.AvatarType;
-                avatarFromDB.Birthday = avatarUpdate.Birthday;
-                avatarFromDB.SoldDate = avatarUpdate.SoldDate;
-                avatarFromDB.Color = avatarUpdate.Color;
-                avatarFromDB.Owner = avatarUpdate.Owner;
-                avatarFromDB.Price = avatarUpdate.Price;
-                return avatarFromDB;
+                avatar.Name = avatarUpdate.Name;
+                avatar.AvatarType = avatarUpdate.AvatarType;
+                avatar.Birthday = avatarUpdate.Birthday;
+                avatar.SoldDate = avatarUpdate.SoldDate;
+                avatar.Color = avatarUpdate.Color;
+                avatar.Owner = avatarUpdate.Owner;
+                avatar.Price = avatarUpdate.Price;
+                return avatar;
             }
             return null;
         }
 
         public Avatar Delete(int id)
         {
-            var avatarFound = this.GetAvatarById(id);
-            if (avatarFound != null)
+            Avatar a = GetAllAvatars().Find(x => x.Id == id);
+            GetAllAvatars().Remove(a);
+            if (a != null)
             {
-                _avatarList.Remove(avatarFound);
-                return avatarFound;
+                return a;
             }
             return null;
         }

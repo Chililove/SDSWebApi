@@ -12,8 +12,11 @@ namespace SDS.Infrastructure.Data.Repositories
 
         private static List<Owner> _ownerList = new List<Owner>();
         static int id = 1;
-      
 
+        public OwnerRepo()
+        {
+
+        }
         public Owner CreateOwner(Owner owner)
         {
             owner.Id = id++;

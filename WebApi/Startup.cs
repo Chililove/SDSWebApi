@@ -21,6 +21,7 @@ namespace WebApi
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -62,8 +63,8 @@ namespace WebApi
                 IOwnerRepository owRepo = new OwnerRepo();
                 ITypeRepository tyrepo = new TypeRepo();
 
-                DBInit db = new DBInit(aRepo, owRepo, tyrepo);
-                db.InitData(); // Mock data
+               
+                DBInit.InitData(); // Mock data
                 IAvatarService aService = new AvatarService(aRepo);
                 IOwnerService owService = new OwnerService(owRepo);
                 ITypeService tService = new TypeService(tyrepo);

@@ -2,39 +2,37 @@
 using SDS.Core.Entity;
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 
 
 namespace SDS.Infrastructure.Data
 {
-    public class DBInit : IDBInit
+    public static class DBInit
     {
-        private readonly IAvatarRepository _avatarRepository;
-        private readonly IOwnerRepository _ownerRepository;
-        private readonly ITypeRepository _typeRepository;
-        public DBInit(IAvatarRepository avatarRepository, IOwnerRepository ownerRepository, ITypeRepository typeRepository)
+        public static List<AvatarType> avatarTypeList = new List<AvatarType>();
+        public static List<Owner> ownerList = new List<Owner>();
+        public static List<Avatar> avartarLists = new List<Avatar>();
+        public static int Id = 1;
+
+        public static void InitData()
         {
-            _avatarRepository = avatarRepository;
-            _ownerRepository = ownerRepository;
-            _typeRepository = typeRepository;
-        }
-        public void InitData()
-        {
-        /*    Avatars = new List<Avatar>();
+         /*   Avatars = new List<Avatar>();
             Owners = new List<Owner>();
             Avatarypes = new List<AvatarType>();*/
             Random r = new Random();
-            _avatarRepository.Create(new Avatar
+            avartarLists.Add(new Avatar
             {
-                      Name = "Bradley",
-                      AvatarType = "Wrath",
-                      Birthday = DateTime.Now.Date,
-                      SoldDate = DateTime.Now.Date,
-                      Color = "black",
-                      Owner = "Chili",
-                      Price = 900
-        });
-            _avatarRepository.Create(new Avatar
+                Name = "Bradley",
+                AvatarType = "Wrath",
+                Birthday = DateTime.Now.Date,
+                SoldDate = DateTime.Now.Date,
+                Color = "black",
+                Owner = "Chili",
+                Id = Id++,
+                Price = 900
+            }) ;
+            avartarLists.Add(new Avatar
         {
                      Name = "Chili",
                      AvatarType = "Goddess",
@@ -42,10 +40,11 @@ namespace SDS.Infrastructure.Data
                      SoldDate = DateTime.Now.Date.AddYears(-5),
                      Color = "Pink",
                      Owner = "Bradley",
+                     Id = Id++,
                      Price = 800
                  });
 
-            _avatarRepository.Create(new Avatar
+            avartarLists.Add(new Avatar
             {
                 Name = "Bunsy",
                 AvatarType = "Sloth",
@@ -55,7 +54,8 @@ namespace SDS.Infrastructure.Data
                 Owner = "Chili",
                 Price = 600
             });
-            _avatarRepository.Create(new Avatar
+
+            avartarLists.Add(new Avatar
             {
                 Name = "Meliodas",
                 AvatarType = "Wrath",
@@ -65,7 +65,7 @@ namespace SDS.Infrastructure.Data
                 Owner = "Chili",
                 Price = 400
             });
-            _avatarRepository.Create(new Avatar
+            avartarLists.Add(new Avatar
             {
                 Name = "Melon",
                 AvatarType = "Greed",
@@ -74,7 +74,7 @@ namespace SDS.Infrastructure.Data
                 Color = "Sand",
                 Owner = "Bradley",
                 Price = 400
-            }); _avatarRepository.Create(new Avatar
+            }); avartarLists.Add(new Avatar
             {
                 Name = "Ban",
                 AvatarType = "Greed",
@@ -84,7 +84,7 @@ namespace SDS.Infrastructure.Data
                 Owner = "Lotte",
                 Price = 400
             });
-            _avatarRepository.Create(new Avatar
+            avartarLists.Add(new Avatar
             {
                 Name = "Diane",
                 AvatarType = "Envy",
@@ -92,9 +92,12 @@ namespace SDS.Infrastructure.Data
                 SoldDate = DateTime.Now.Date.AddYears(-5),
                 Color = "Orange",
                 Owner = "Peter",
+                
                 Price = 400
             });
-            _ownerRepository.CreateOwner(new Owner
+
+
+            ownerList.Add(new Owner
             {
                 FirstName = "Peter",
                 LastName = "Pan",
@@ -104,7 +107,7 @@ namespace SDS.Infrastructure.Data
 
             });
 
-            _ownerRepository.CreateOwner(new Owner
+            ownerList.Add(new Owner
             {
                 FirstName = "Lotte",
                 LastName = "Pedersen",
@@ -114,7 +117,7 @@ namespace SDS.Infrastructure.Data
 
             });
             
-            _ownerRepository.CreateOwner(new Owner
+            ownerList.Add(new Owner
                {
                    FirstName = "Bradley",
                    LastName = "Swords",
@@ -123,7 +126,7 @@ namespace SDS.Infrastructure.Data
                    Email = "LostBoy@sao.com"
 
                });
-            _ownerRepository.CreateOwner(new Owner
+            ownerList.Add(new Owner
             {
                 FirstName = "Chili",
                 LastName = "Love",
@@ -133,39 +136,39 @@ namespace SDS.Infrastructure.Data
 
             });
 
-            _typeRepository.CreateType(new AvatarType
+            avatarTypeList.Add(new AvatarType
             {
                 TypeOfAvatar = "Wrath"
 
 
             });
-            _typeRepository.CreateType(new AvatarType
+            avatarTypeList.Add(new AvatarType
             {
                 TypeOfAvatar = "Greed"
 
 
-            }); _typeRepository.CreateType(new AvatarType
+            }); avatarTypeList.Add(new AvatarType
             {
                 TypeOfAvatar = "Envy"
 
 
-            }); _typeRepository.CreateType(new AvatarType
+            }); avatarTypeList.Add(new AvatarType
             {
                 TypeOfAvatar = "Sloth"
 
 
             });
-            _typeRepository.CreateType(new AvatarType
+            avatarTypeList.Add(new AvatarType
             {
                 TypeOfAvatar = "Goddess"
 
             });
 
-
+          
 
 
             // GiantMock.AddToRepo(_avatarRepository);
-            foreach (Avatar avatar in _avatarRepository.GetAllAvatars()) {
+            foreach (Avatar avatar in avartarLists) {
                 int bdInt = r.Next(1, 100);
                 avatar.Birthday = DateTime.Now.AddYears(-1 * bdInt);
                 avatar.Birthday = avatar.Birthday.AddDays(r.Next(0,365));
@@ -175,6 +178,22 @@ namespace SDS.Infrastructure.Data
                 avatar.SoldDate = avatar.SoldDate.AddSeconds(r.Next(0, 60 * 60 * 24));
             }
 
+        }
+        public static List<Avatar> GetAllAvatars()
+        {
+            return avartarLists;
+        }
+        public static List<Owner> GetOwners() 
+        {
+            return ownerList;
+        }
+        public static List<AvatarType> GetAvatarTypes()
+        {
+            return avatarTypeList;
+        }
+        public static int GetNextId()
+        {
+            return Id;
         }
 
     }

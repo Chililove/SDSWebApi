@@ -29,32 +29,33 @@ namespace WebApi.Controllers
         }
 
         // GET api/<AvatarCon>/5
-        [HttpGet("{id}", Name = "Get")]
-        public Avatar Get(int id)
+        [HttpGet("{id}")]
+        public ActionResult<Avatar> Get(int id)
         {
             return _avatarService.ReadById(id);
         }
 
         // POST api/<AvatarCon>
         [HttpPost]
-        public void Post([FromBody] Avatar avatar)
+        public ActionResult<Avatar> Post([FromBody] Avatar avatar)
         {
-            _avatarService.Create(avatar);
+           return _avatarService.Create(avatar);
         }
+
 
         // PUT api/<AvatarCon>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Avatar avatar)
+        public ActionResult<Avatar> Put(int id, [FromBody] Avatar avatar)
         {
-            _avatarService.Update(avatar);
+          return  _avatarService.Update(avatar);
 
         }
 
         // DELETE api/<AvatarCon>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<Avatar> Delete(int id)
         {
-            _avatarService.Delete(id);
+           return _avatarService.Delete(id);
         }
     }
 }
