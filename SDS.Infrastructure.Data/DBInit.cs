@@ -28,18 +28,18 @@ namespace SDS.Infrastructure.Data
                 Owner = "Chili",
                 Id = Id++,
                 Price = 900
-            }) ;
+            });
             avartarLists.Add(new Avatar
-        {
-                     Name = "Chili",
-                     AvatarType = "Goddess",
-                     Birthday = DateTime.Now.AddYears(-1*r.Next(1,100)),
-                     SoldDate = DateTime.Now.Date.AddYears(-5),
-                     Color = "Pink",
-                     Owner = "Bradley",
-                     Id = Id++,
-                     Price = 800
-                 });
+            {
+                Name = "Chili",
+                AvatarType = "Goddess",
+                Birthday = DateTime.Now.AddYears(-1 * r.Next(1, 100)),
+                SoldDate = DateTime.Now.Date.AddYears(-5),
+                Color = "Pink",
+                Owner = "Bradley",
+                Id = Id++,
+                Price = 800
+            });
 
             avartarLists.Add(new Avatar
             {
@@ -95,9 +95,9 @@ namespace SDS.Infrastructure.Data
                 Owner = "Peter",
                 Id = Id++,
                 Price = 400
-            });
+            }); 
 
-
+            // Id keeps incrementing through lists. avatartypes get id's like 13 and 15..
             ownerLists.Add(new Owner
             {
                 Id = Id++,
