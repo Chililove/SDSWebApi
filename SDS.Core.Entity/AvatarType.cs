@@ -8,8 +8,5 @@ namespace SDS.Core.Entity
     {
         public int Id { get; set; }
         public string TypeOfAvatar { get; set; }
-
-      // public List<Avatar> avatarTypeList { get; set; }
-
     }
 }

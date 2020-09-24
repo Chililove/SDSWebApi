@@ -3,6 +3,8 @@ using System;
 using SDS.Core.Entity;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Data;
 
 namespace SDS.Core.Application_Service.Service
 {
@@ -19,13 +21,13 @@ namespace SDS.Core.Application_Service.Service
 
         // Not sure about the naming of name, its called NameType in AvatarType entity?
 
-        public AvatarType CreateType(AvatarType AvatarType)
+        public AvatarType CreateType(AvatarType avatarType)
         {
-            if (AvatarType.TypeOfAvatar == null)
+            if (avatarType.TypeOfAvatar == null)
             {
                 throw new System.IO.InvalidDataException("You need to put in atleast 1 letter!");
             }
-            return _typeRepository.CreateType(AvatarType);
+            return _typeRepository.CreateType(avatarType);
         }
 
         public AvatarType DeleteType(int id)
@@ -48,18 +50,27 @@ namespace SDS.Core.Application_Service.Service
             return _typeRepository.GetTypeById(id); 
         }
 
-       
-        public AvatarType UpdateType(AvatarType typeToUpdate) 
+
+        public AvatarType UpdateType(AvatarType typeToUpdate)
         {
             var DBType = ReadTypeById(typeToUpdate.Id);
             if (DBType != null)
             {
-                DBType = typeToUpdate;                             
+                DBType.TypeOfAvatar = typeToUpdate.TypeOfAvatar;
+
+                if (typeToUpdate.TypeOfAvatar.Length < 1)
+                {
+                    throw new InvalidDataException("Name must be atleast 1 char");
+                }
+
+                if (typeToUpdate == null)
+                {
+                    throw new InvalidDataException("Did not find avatar with id: " + typeToUpdate.Id);
+                }
+                return _typeRepository.UpdateType(typeToUpdate);
             }
             return DBType;
         }
-    
- 
 
     }
 }

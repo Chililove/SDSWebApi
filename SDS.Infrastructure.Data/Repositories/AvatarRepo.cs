@@ -9,9 +9,7 @@ namespace SDS.Infrastructure.Data.Repositories
 
     {
         private static List<Avatar> _avatarList = new List<Avatar>();
-        static int id = 1;
-        
-        
+
         public Avatar Create(Avatar avatar)
         {
             avatar.Id = DBInit.GetNextId();
@@ -20,10 +18,10 @@ namespace SDS.Infrastructure.Data.Repositories
             return avatar;
         }
 
-        public Avatar GetAvatarById(int Id)
+        public Avatar GetAvatarById(int id)
         {
             var avatarList = DBInit.GetAllAvatars();
-            var avatar = avatarList.Find(x => x.Id == Id);
+            var avatar = avatarList.Find(x => x.Id == id);
             return avatar;
         }
 

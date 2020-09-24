@@ -29,30 +29,30 @@ namespace WebApi.Controllers
 
         // GET api/<TypeCon>/5
         [HttpGet("{id}")]
-        public AvatarType GetAvatarType(int id)
+        public ActionResult<AvatarType> GetAvatarType(int id)
         {
             return _typeService.ReadTypeById(id);
         }
 
         // POST api/<TypeCon>
         [HttpPost]
-        public void Post([FromBody] AvatarType aType)
+        public ActionResult<AvatarType> Post([FromBody] AvatarType aType)
         {
-            _typeService.CreateType(aType);
+           return _typeService.CreateType(aType);
         }
 
         // PUT api/<TypeCon>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] AvatarType aType)
+        public ActionResult<AvatarType> Put(int id, [FromBody] AvatarType aType)
         {
-            _typeService.UpdateType(aType);
+           return _typeService.UpdateType(aType);
         }
 
         // DELETE api/<TypeCon>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<AvatarType> Delete(int id)
         {
-            _typeService.DeleteType(id);
+           return _typeService.DeleteType(id);
         }
     }
 }

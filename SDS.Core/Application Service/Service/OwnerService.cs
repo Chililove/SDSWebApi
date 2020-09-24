@@ -8,12 +8,12 @@ namespace SDS.Core.Application_Service.Service
 {
     public class OwnerService : IOwnerService
     {
-        private readonly IOwnerRepository _OwnerRepository;
+        private readonly IOwnerRepository _ownerRepository;
         public static IEnumerable<Owner> ownerList;
 
         public OwnerService(IOwnerRepository ownerRepository)
         {
-            _OwnerRepository = ownerRepository;
+            _ownerRepository = ownerRepository;
         }
 
 
@@ -24,7 +24,7 @@ namespace SDS.Core.Application_Service.Service
             {
                 throw new System.IO.InvalidDataException("You need to put in atleast 1 letter!");
             }
-            return _OwnerRepository.CreateOwner(owner);
+            return _ownerRepository.CreateOwner(owner);
         }
 
         public Owner Update(Owner owner)
@@ -38,7 +38,7 @@ namespace SDS.Core.Application_Service.Service
             {
                 throw new System.IO.InvalidDataException("Did not find owner with id: " + owner.Id);
             }
-            return _OwnerRepository.UpdateOwner(owner);
+            return _ownerRepository.UpdateOwner(owner);
 
 
         }
@@ -65,41 +65,34 @@ namespace SDS.Core.Application_Service.Service
 
                 throw new System.IO.InvalidDataException("Id must be atleast 1");
             }
-            return _OwnerRepository.DeleteOwner(id);
+            return _ownerRepository.DeleteOwner(id);
         }
 
         public List<Owner> GetOwners( )
         {
-            return (List<Owner>)_OwnerRepository.ReadAllOwners();
+            return _ownerRepository.GetAllOwners();
+           // return (List<Owner>)_ownerRepository.ReadAllOwners();
         }
 
         /// I Dont get this one.
         
         public Owner FindOwnerByAvatar(Avatar avatar)
         {
-            return _OwnerRepository.GetOwnerByAvatar(avatar);
+            return _ownerRepository.GetOwnerByAvatar(avatar);
         }
 
         public Owner FindOwnerById(int id)
         {
-            foreach (Owner owner in _OwnerRepository.ReadAllOwners())
-            {
-                if (id == owner.Id)
-                {
-                    return owner;
-                }
-            }
-            return null;
+            return _ownerRepository.GetOwnerById(id);
         }
-
-
 
 
 
         public List<Owner> SearchOwner(string st)
         {
-            List<Owner> results = new List<Owner>();
-            foreach (Owner owner in _OwnerRepository.ReadAllOwners())
+            List<Owner> results = GetOwners();
+           // List<Owner> 
+            foreach (Owner owner in _ownerRepository.ReadAllOwners())
             {
                 if (owner.FirstName.Contains(st))
                 {

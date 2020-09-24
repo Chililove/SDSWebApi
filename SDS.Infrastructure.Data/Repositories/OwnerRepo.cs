@@ -11,27 +11,23 @@ namespace SDS.Infrastructure.Data.Repositories
     {
 
         private static List<Owner> _ownerList = new List<Owner>();
-        static int id = 1;
 
-        public OwnerRepo()
-        {
-
-        }
         public Owner CreateOwner(Owner owner)
         {
-            owner.Id = id++;
-            _ownerList.Add(owner);
+            owner.Id = DBInit.GetNextId();
+            var list = DBInit.GetOwners();
+            list.Add(owner);
             return owner;
         }
 
 
         public Owner DeleteOwner(int id)
         {
-            var ownerFound = this.GetOwnerById(id);
-            if (ownerFound != null)
+            Owner o = GetAllOwners().Find(x => x.Id == id);
+            GetAllOwners().Remove(o);
+            if (o != null)
             {
-                _ownerList.Remove(ownerFound);
-                return ownerFound;
+                return o;
             }
             return null;
         }
@@ -40,19 +36,15 @@ namespace SDS.Infrastructure.Data.Repositories
 
         public Owner GetOwnerById(int id)
         {
-            foreach (var owner in _ownerList)
-            {
-                if (owner.Id == id)
-                {
-                    return owner;
-                }
-            }
-            return null;
+            var ownerList = DBInit.GetOwners();
+            var owner = ownerList.Find(x => x.Id == id);
+            return owner;
         }
 
         public List<Owner> GetAllOwners() 
         {
-            return _ownerList;
+            var ownerList = DBInit.GetOwners();
+            return ownerList;
         }
 
        public IEnumerable<Owner> ReadAllOwners()
@@ -62,15 +54,16 @@ namespace SDS.Infrastructure.Data.Repositories
 
         public Owner UpdateOwner(Owner ownerUpdate)
         {
-            var ownerFromDB = this.GetOwnerById(ownerUpdate.Id);
-            if (ownerFromDB != null)
-            {
-                ownerFromDB.FirstName = ownerUpdate.FirstName;
-                ownerFromDB.LastName = ownerUpdate.LastName;
-                ownerFromDB.Address = ownerUpdate.Address;
-                ownerFromDB.PhoneNumber = ownerUpdate.PhoneNumber;
-                ownerFromDB.Email = ownerUpdate.Email;
-                return ownerFromDB;
+            var owner = GetOwnerById(ownerUpdate.Id);
+            if(owner != null)
+            { 
+           
+                owner.FirstName = ownerUpdate.FirstName;
+                owner.LastName = ownerUpdate.LastName;
+                owner.Address = ownerUpdate.Address;
+                owner.PhoneNumber = ownerUpdate.PhoneNumber;
+                owner.Email = ownerUpdate.Email;
+                return owner;
             }
             return null;
         }

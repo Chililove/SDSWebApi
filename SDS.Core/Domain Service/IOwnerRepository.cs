@@ -10,12 +10,12 @@ namespace SDS.Core.Domain_Service
         IEnumerable<Owner> ReadAllOwners();
 
         public List<Owner> GetAllOwners();
-        public Owner CreateOwner(Owner owner);
-        public Owner GetOwnerById(int id);
+        Owner CreateOwner(Owner owner);
+        Owner GetOwnerById(int id);
 
-        public Owner GetOwnerByAvatar(Avatar avatar);
-        public Owner UpdateOwner(Owner ownerUpdate);
+        Owner GetOwnerByAvatar(Avatar avatar);
+        Owner UpdateOwner(Owner ownerUpdate);
 
-        public Owner DeleteOwner(int id);
+        Owner DeleteOwner(int id);
     }
 }

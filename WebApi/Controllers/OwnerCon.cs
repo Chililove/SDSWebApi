@@ -29,31 +29,31 @@ namespace WebApi.Controllers
 
         // GET api/<OwnerCon>/5
 
-        [HttpGet("{id}", Name = "Getit")]
-        public Owner GetOwner(int id)
+        [HttpGet("{id}")]
+        public ActionResult<Owner> GetOwner(int id)
         {
             return _ownerService.FindOwnerById(id);
         }
 
         // POST api/<OwnerCon>
         [HttpPost]
-        public void Post([FromBody] Owner owner)
+        public ActionResult<Owner> Post([FromBody] Owner owner)
         {
-            _ownerService.CreateOwner(owner);
+           return _ownerService.CreateOwner(owner);
         }
 
         // PUT api/<OwnerCon>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Owner owner)
+        public ActionResult<Owner> Put(int id, [FromBody] Owner owner)
         {
-            _ownerService.UpdateOwner(owner);
+          return _ownerService.UpdateOwner(owner);
         }
 
         // DELETE api/<OwnerCon>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<Owner> Delete(int id)
         {
-            _ownerService.DeleteOwner(id);
+            return _ownerService.DeleteOwner(id);
         }
     }
 }

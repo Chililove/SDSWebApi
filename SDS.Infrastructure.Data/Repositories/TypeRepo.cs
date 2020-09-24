@@ -10,43 +10,37 @@ namespace SDS.Infrastructure.Data.Repositories
         private static List<AvatarType> _typeList = new List<AvatarType>();
         static int id = 1;
 
-        public TypeRepo()
+     
+        public AvatarType CreateType(AvatarType avatarType)
         {
-
-        }
-        public AvatarType CreateType(AvatarType AvatarType)
-        {
-            AvatarType.Id = id++;
-            _typeList.Add(AvatarType);
-            return AvatarType;
+            avatarType.Id = DBInit.GetNextId();
+            var list = DBInit.GetAvatarTypes();
+            list.Add(avatarType);
+            return avatarType;
         }
 
         public AvatarType DeleteType(int id)
         {
-            var typeFound = this.GetTypeById(id);
-            if (typeFound != null)
+            AvatarType atype = GetAllTypes().Find(x => x.Id == id);
+            GetAllTypes().Remove(atype);
+            if (atype != null)
             {
-                _typeList.Remove(typeFound);
-                return typeFound;
+                return atype;
             }
             return null;
         }
 
         public List<AvatarType> GetAllTypes()
         {
-            return _typeList;
+            var typeList = DBInit.GetAvatarTypes();
+            return typeList;
         }
 
         public AvatarType GetTypeById(int id)
         {
-            foreach (AvatarType AvatarType in _typeList)
-            {
-                if (AvatarType.Id == id)
-                {
-                    return AvatarType;
-                }
-            }
-            return null;
+            var typeList = DBInit.GetAvatarTypes();
+            var avatarType = typeList.Find(x => x.Id == id);
+            return avatarType;
         }
 
         public IEnumerable<AvatarType> ReadAllTypes()
@@ -56,12 +50,12 @@ namespace SDS.Infrastructure.Data.Repositories
 
       public AvatarType UpdateType(AvatarType typeUpdate)
         {
-            var typeFromDB = this.GetTypeById(typeUpdate.Id);
-            if (typeFromDB != null)
+            var avatarType = GetTypeById(typeUpdate.Id);
+            if (avatarType != null)
             {
-                typeFromDB.TypeOfAvatar = typeUpdate.TypeOfAvatar;              
+                avatarType.TypeOfAvatar = typeUpdate.TypeOfAvatar;              
          
-                return typeFromDB;
+                return avatarType;
             }
             return null;
         }

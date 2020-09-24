@@ -10,16 +10,13 @@ namespace SDS.Infrastructure.Data
 {
     public static class DBInit
     {
-        public static List<AvatarType> avatarTypeList = new List<AvatarType>();
-        public static List<Owner> ownerList = new List<Owner>();
+        public static List<AvatarType> avatarTypeLists = new List<AvatarType>();
+        public static List<Owner> ownerLists = new List<Owner>();
         public static List<Avatar> avartarLists = new List<Avatar>();
         public static int Id = 1;
 
         public static void InitData()
         {
-         /*   Avatars = new List<Avatar>();
-            Owners = new List<Owner>();
-            Avatarypes = new List<AvatarType>();*/
             Random r = new Random();
             avartarLists.Add(new Avatar
             {
@@ -52,6 +49,7 @@ namespace SDS.Infrastructure.Data
                 SoldDate = DateTime.Now.Date.AddYears(-5),
                 Color = "Blue",
                 Owner = "Chili",
+                Id = Id++,
                 Price = 600
             });
 
@@ -63,6 +61,7 @@ namespace SDS.Infrastructure.Data
                 SoldDate = DateTime.Now.Date.AddYears(-5),
                 Color = "Dark Purple",
                 Owner = "Chili",
+                Id = Id++,
                 Price = 400
             });
             avartarLists.Add(new Avatar
@@ -73,6 +72,7 @@ namespace SDS.Infrastructure.Data
                 SoldDate = DateTime.Now.Date.AddYears(-5),
                 Color = "Sand",
                 Owner = "Bradley",
+                Id = Id++,
                 Price = 400
             }); avartarLists.Add(new Avatar
             {
@@ -82,6 +82,7 @@ namespace SDS.Infrastructure.Data
                 SoldDate = DateTime.Now.Date.AddYears(-5),
                 Color = "Red",
                 Owner = "Lotte",
+                Id = Id++,
                 Price = 400
             });
             avartarLists.Add(new Avatar
@@ -92,13 +93,14 @@ namespace SDS.Infrastructure.Data
                 SoldDate = DateTime.Now.Date.AddYears(-5),
                 Color = "Orange",
                 Owner = "Peter",
-                
+                Id = Id++,
                 Price = 400
             });
 
 
-            ownerList.Add(new Owner
+            ownerLists.Add(new Owner
             {
+                Id = Id++,
                 FirstName = "Peter",
                 LastName = "Pan",
                 Address = "Mælkevejen",
@@ -107,8 +109,9 @@ namespace SDS.Infrastructure.Data
 
             });
 
-            ownerList.Add(new Owner
+            ownerLists.Add(new Owner
             {
+                Id = Id++,
                 FirstName = "Lotte",
                 LastName = "Pedersen",
                 Address = "IpCom",
@@ -117,8 +120,9 @@ namespace SDS.Infrastructure.Data
 
             });
             
-            ownerList.Add(new Owner
+            ownerLists.Add(new Owner
                {
+                   Id = Id++,
                    FirstName = "Bradley",
                    LastName = "Swords",
                    Address = "Sao",
@@ -126,8 +130,9 @@ namespace SDS.Infrastructure.Data
                    Email = "LostBoy@sao.com"
 
                });
-            ownerList.Add(new Owner
+            ownerLists.Add(new Owner
             {
+                Id = Id++,
                 FirstName = "Chili",
                 LastName = "Love",
                 Address = "LaLaLand",
@@ -136,30 +141,35 @@ namespace SDS.Infrastructure.Data
 
             });
 
-            avatarTypeList.Add(new AvatarType
+            avatarTypeLists.Add(new AvatarType
             {
+                Id = Id++,
                 TypeOfAvatar = "Wrath"
 
 
             });
-            avatarTypeList.Add(new AvatarType
+            avatarTypeLists.Add(new AvatarType
             {
+                Id = Id++,
                 TypeOfAvatar = "Greed"
 
 
-            }); avatarTypeList.Add(new AvatarType
+            }); avatarTypeLists.Add(new AvatarType
             {
+                Id = Id++,
                 TypeOfAvatar = "Envy"
 
 
-            }); avatarTypeList.Add(new AvatarType
+            }); avatarTypeLists.Add(new AvatarType
             {
+                Id = Id++,
                 TypeOfAvatar = "Sloth"
 
 
             });
-            avatarTypeList.Add(new AvatarType
+            avatarTypeLists.Add(new AvatarType
             {
+                Id = Id++,
                 TypeOfAvatar = "Goddess"
 
             });
@@ -185,11 +195,11 @@ namespace SDS.Infrastructure.Data
         }
         public static List<Owner> GetOwners() 
         {
-            return ownerList;
+            return ownerLists;
         }
         public static List<AvatarType> GetAvatarTypes()
         {
-            return avatarTypeList;
+            return avatarTypeLists;
         }
         public static int GetNextId()
         {

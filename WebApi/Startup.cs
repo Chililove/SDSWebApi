@@ -54,7 +54,7 @@ namespace WebApi
             {
                 var repo = scope.ServiceProvider.GetRequiredService<IAvatarRepository>();
                 var orepo = scope.ServiceProvider.GetRequiredService<IOwnerRepository>();
-                ITypeRepository trepo = scope.ServiceProvider.GetRequiredService<ITypeRepository>();
+                var trepo = scope.ServiceProvider.GetRequiredService<ITypeRepository>();
 
                 /* repo.Create(new Avatar { Name = "Chili", AvatarType = "Magician", Color = "Pink" });
                  repo.Create(new Avatar { Name = "Bunsy", AvatarType = "Healer", Color = "Black" });*/

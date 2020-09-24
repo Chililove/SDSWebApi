@@ -47,7 +47,7 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<Avatar> Put(int id, [FromBody] Avatar avatar)
         {
-          return  _avatarService.Update(avatar);
+          return _avatarService.Update(avatar);
 
         }
 
