@@ -3,7 +3,7 @@ using SDS.Core.Entity;
 
 namespace SDS.Infrastructure.Data
 {
-    public class GiantMock
+   /* public class GiantMock
     {
        /* public static void AddToRepo(IAvatarRepository _avatarRepository)
         {
@@ -1008,6 +1008,6 @@ namespace SDS.Infrastructure.Data
             avatarList.Add(new Avatar { Name = "Frans", AvatarType = "Felis pardalis", Color = "Goldenrod", Owner = "Frans Bissill", Price = 25178908 });
             avatarList.Add(new Avatar { Name = "Dotty", AvatarType = "Paradoxurus hermaphroditus", Color = "Turquoise", Owner = "Dotty Shayler", Price = 19817204 });
         
-            }*/
-    }
+            
+    }*/
 }
