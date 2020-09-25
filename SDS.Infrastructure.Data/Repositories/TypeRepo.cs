@@ -13,7 +13,7 @@ namespace SDS.Infrastructure.Data.Repositories
      
         public AvatarType CreateType(AvatarType avatarType)
         {
-            avatarType.Id = DBInit.GetNextId();
+            avatarType.Id = DBInit.GetNextIdAvatarType();
             var list = DBInit.GetAvatarTypes();
             list.Add(avatarType);
             return avatarType;

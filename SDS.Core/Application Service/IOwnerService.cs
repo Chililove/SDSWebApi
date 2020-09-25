@@ -10,7 +10,7 @@ namespace SDS.Core.Application_Service
 
         public List<Owner> GetOwners();
 
-        Owner FindOwnerByAvatar(Avatar avatar);
+        Owner FindOwnerByAvatar(Owner owner);
         Owner FindOwnerById(int id);
         Owner CreateOwner(Owner owner);
         Owner DeleteOwner(int id);

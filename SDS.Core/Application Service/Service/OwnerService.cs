@@ -76,9 +76,9 @@ namespace SDS.Core.Application_Service.Service
 
         /// I Dont get this one.
         
-        public Owner FindOwnerByAvatar(Avatar avatar)
+        public Owner FindOwnerByAvatar(Owner owner)
         {
-            return _ownerRepository.GetOwnerByAvatar(avatar);
+            return _ownerRepository.GetOwnerByAvatar(owner);
         }
 
         public Owner FindOwnerById(int id)

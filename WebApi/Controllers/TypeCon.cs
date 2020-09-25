@@ -45,7 +45,7 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<AvatarType> Put(int id, [FromBody] AvatarType aType)
         {
-           return _typeService.UpdateType(aType);
+           return _typeService.UpdateAvatarType(aType);
         }
 
         // DELETE api/<TypeCon>/5

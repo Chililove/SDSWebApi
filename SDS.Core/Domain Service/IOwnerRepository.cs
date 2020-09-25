@@ -13,7 +13,7 @@ namespace SDS.Core.Domain_Service
         Owner CreateOwner(Owner owner);
         Owner GetOwnerById(int id);
 
-        Owner GetOwnerByAvatar(Avatar avatar);
+        Owner GetOwnerByAvatar(Owner owner);
         Owner UpdateOwner(Owner ownerUpdate);
 
         Owner DeleteOwner(int id);

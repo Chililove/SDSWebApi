@@ -1,7 +1,9 @@
-﻿using SDS.Core.Domain_Service;
+﻿using SDS.Core.Application_Service.Service;
+using SDS.Core.Domain_Service;
 using SDS.Core.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SDS.Infrastructure.Data.Repositories
@@ -12,9 +14,10 @@ namespace SDS.Infrastructure.Data.Repositories
 
         private static List<Owner> _ownerList = new List<Owner>();
 
+
         public Owner CreateOwner(Owner owner)
         {
-            owner.Id = DBInit.GetNextId();
+            owner.Id = DBInit.GetNextIdOwner();
             var list = DBInit.GetOwners();
             list.Add(owner);
             return owner;
@@ -67,10 +70,14 @@ namespace SDS.Infrastructure.Data.Repositories
             }
             return null;
         }
-
-        public Owner GetOwnerByAvatar(Avatar avatar)
+        // How to connect the two lists by names?
+        public Owner GetOwnerByAvatar(Owner owner)
         {
-            throw new NotImplementedException();
+            var names = new HashSet<string>(AvatarService.avatarList.Select(p => p.Name));
+            var products = _ownerList.Where(p => names.Contains(p.FirstName))
+                                       .ToList();
+            return owner;
         }
+        
     }
 }

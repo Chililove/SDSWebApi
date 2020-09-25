@@ -47,30 +47,54 @@ namespace SDS.Core.Application_Service.Service
 
         public AvatarType ReadTypeById(int id)
         {
-            return _typeRepository.GetTypeById(id); 
+            return _typeRepository.GetTypeById(id);
         }
 
-
-        public AvatarType UpdateType(AvatarType typeToUpdate)
+        public AvatarType Update(AvatarType avatarType)
         {
-            var DBType = ReadTypeById(typeToUpdate.Id);
+            if (avatarType.TypeOfAvatar.Length < 1)
+            {
+                throw new System.IO.InvalidDataException("Name must be atleast 1 char");
+            }
+
+            if (avatarType == null)
+            {
+                throw new System.IO.InvalidDataException("Did not find owner with id: " + avatarType.Id);
+            }
+            return _typeRepository.UpdateType(avatarType);
+        }
+
+        public AvatarType UpdateAvatarType(AvatarType avatarType)
+        {
+            var DBType = ReadTypeById(avatarType.Id);
             if (DBType != null)
             {
-                DBType.TypeOfAvatar = typeToUpdate.TypeOfAvatar;
-
-                if (typeToUpdate.TypeOfAvatar.Length < 1)
-                {
-                    throw new InvalidDataException("Name must be atleast 1 char");
-                }
-
-                if (typeToUpdate == null)
-                {
-                    throw new InvalidDataException("Did not find avatar with id: " + typeToUpdate.Id);
-                }
-                return _typeRepository.UpdateType(typeToUpdate);
+                DBType.TypeOfAvatar = avatarType.TypeOfAvatar;
+               
             }
+
             return DBType;
         }
+        /* public AvatarType UpdateType(AvatarType typeToUpdate)
+         {
+             var DBType = ReadTypeById(typeToUpdate.Id);
+             if (DBType != null)
+             {
+                 DBType.TypeOfAvatar = typeToUpdate.TypeOfAvatar;
+
+                 if (typeToUpdate.TypeOfAvatar.Length < 1)
+                 {
+                     throw new InvalidDataException("Name must be atleast 1 char");
+                 }
+
+                 if (typeToUpdate == null)
+                 {
+                     throw new InvalidDataException("Did not find avatar with id: " + typeToUpdate.Id);
+                 }
+                 return _typeRepository.UpdateType(typeToUpdate);
+             }
+             return DBType;
+         }     */
 
     }
 }

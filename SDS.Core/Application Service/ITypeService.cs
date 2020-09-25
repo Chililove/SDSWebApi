@@ -12,7 +12,7 @@ namespace SDS.Core.Application_Service
 
         AvatarType CreateType(AvatarType AvatarType);
 
-        AvatarType UpdateType(AvatarType AvatarType);
+        AvatarType UpdateAvatarType(AvatarType avatarType);
 
         AvatarType DeleteType(int id);
 

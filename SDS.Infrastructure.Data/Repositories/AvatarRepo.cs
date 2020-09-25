@@ -12,7 +12,7 @@ namespace SDS.Infrastructure.Data.Repositories
 
         public Avatar Create(Avatar avatar)
         {
-            avatar.Id = DBInit.GetNextId();
+            avatar.Id = DBInit.GetNextIdAvatar();
             var list = DBInit.GetAllAvatars();
             list.Add(avatar);
             return avatar;
