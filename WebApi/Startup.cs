@@ -32,6 +32,17 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "CustomerAppAllowSpecificOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .WithMethods();
+                    });
+            });
+
             services.AddScoped<IAvatarRepository, AvatarRepo>();
             services.AddScoped<IAvatarService, AvatarService>();
             services.AddScoped<IOwnerRepository, OwnerRepo>();
@@ -40,11 +51,14 @@ namespace WebApi
             services.AddScoped<ITypeService, TypeService>();
 
             services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -69,9 +83,20 @@ namespace WebApi
                 IOwnerService owService = new OwnerService(owRepo);
                 ITypeService tService = new TypeService(tyrepo);
 
-                app.UseHttpsRedirection();
 
+              
+
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                   // c.RoutePrefix = string.Empty;
+                });
+
+                  app.UseHttpsRedirection();
                 app.UseRouting();
+
+                app.UseCors("CustomerAppAllowSpecificOrigins");
+
 
                 app.UseAuthorization();
 

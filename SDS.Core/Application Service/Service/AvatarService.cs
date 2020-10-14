@@ -35,7 +35,8 @@ namespace SDS.Core.Application_Service.Service
 
         public Avatar Create(Avatar avatar)
         {
-            if (avatar.Name.Length < 1)
+            
+            if (avatar.Name == null || avatar.Name.Length < 1)
             {
                 throw new InvalidDataException("You need to put in atleast 1 letter!");
             }
